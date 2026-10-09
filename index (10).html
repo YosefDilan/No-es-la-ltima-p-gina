@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>No es la última página | Reciclaje de papel en CUCEI</title>
+<meta name="description" content="Proyecto ODS 12, 13 y 4: recolección, reciclaje y taller de papel hecho a mano en CUCEI.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--o9:#3d3e32;--o7:#6b6445;--cream:#f9f5ec;--paper:#fffdf8;--brown:#a97442;--rose:#95524a;--ink:#2f2c25;--muted:#6a6558;
+--pink:#e8c4c0;--sage:#b9c7b4;--sky:#b7d3e0;--mustard:#e6d28f;--kraft:#c9a77c;
+--display:"Cormorant Garamond",Georgia,serif;--body:"Montserrat",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 1rem/1.7 var(--body)}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.05;margin:0}
+h2{font-size:clamp(2.4rem,5vw,3.6rem);color:var(--brown)}
+h3{font-size:1.7rem}
+p{margin:0 0 1em;max-width:62ch}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--brown);outline-offset:3px}
+.wrap{width:min(1100px,92%);margin-inline:auto}
+section,.pad{padding:5rem 0}
+.dark{background:var(--o9);color:var(--cream)}.dark h2,.olive h2{color:var(--cream)}
+.olive{background:var(--o7);color:var(--cream)}
+.deckle{filter:url(#deckle)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:#3d3e32}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
+nav b{font-family:var(--display);font-size:1.4rem;color:var(--cream);font-weight:600;text-decoration:none}
+nav ul{display:flex;gap:.3rem;list-style:none;margin:0;padding:0;align-items:center}
+nav a,.dd>button{color:var(--cream);text-decoration:none;font-size:.86rem;font-weight:500;padding:.5rem .9rem;border-radius:999px;background:none;border:0;display:block;opacity:.85;transition:background .2s,opacity .2s}
+nav a:hover,.dd>button:hover{background:rgba(255,255,255,.12);opacity:1}
+nav .act{background:var(--cream)!important;color:var(--o9)!important;opacity:1}
+.dd{position:relative}
+.dd>button::after{content:"▾";margin-left:.35rem;font-size:.7rem}
+.menu{position:absolute;top:calc(100% + .5rem);left:0;min-width:15rem;background:var(--paper);border-radius:14px;padding:.5rem;box-shadow:0 14px 40px rgba(0,0,0,.35);display:none;flex-direction:column}
+.dd.open .menu{display:flex}
+.menu a{color:var(--ink);border-radius:10px;padding:.7rem .9rem}
+.menu a small{display:block;font-size:.75rem;color:var(--muted);font-weight:400}
+.menu a:hover{background:var(--cream)}
+.burger{display:none;background:none;border:2px solid var(--cream);color:var(--cream);border-radius:10px;padding:.3rem .7rem}
+#bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--mustard)}
+
+/* views */
+.view{display:none}.view.on{display:block;animation:in .5s ease}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+
+/* hero */
+.hero{background:var(--o9);color:var(--cream);position:relative;overflow:hidden;min-height:88vh;display:grid;align-items:center;padding:6rem 0}
+.sheet{position:absolute;width:min(34vw,320px);aspect-ratio:3/4;filter:url(#deckle);opacity:.92;will-change:transform;transform:translate3d(0,var(--ty,0),0) rotate(var(--r))}
+.sheet::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(0,0,0,.08) 0 2px,transparent 3px) 0 0/38px 41px,radial-gradient(circle at 70% 60%,rgba(255,255,255,.35) 0 2px,transparent 3px) 0 0/53px 47px}
+.s1{background:var(--pink);right:6%;top:6%;--r:9deg}.s2{background:var(--sage);right:19%;top:14%;--r:-4deg}
+.s3{background:var(--sky);right:-2%;bottom:-6%;--r:-12deg}.s4{background:var(--mustard);left:-5%;bottom:-8%;--r:14deg}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(3.6rem,11vw,8.5rem);text-shadow:0 4px 28px rgba(0,0,0,.55)}
+.hero h1 em{display:block;font-style:italic}
+.hero p{font-size:1.15rem;margin-top:1.6rem;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}
+.btn{display:inline-block;padding:.85rem 1.5rem;border-radius:999px;background:var(--cream);color:var(--o9);font-weight:600;text-decoration:none;border:2px solid var(--cream);transition:.2s}
+.btn.ghost{background:transparent;color:var(--cream)}
+.btn:hover{background:var(--brown);border-color:var(--brown);color:#fff}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+.stats strong{display:block;font-family:var(--display);font-size:clamp(2.6rem,6vw,4.4rem);line-height:1;color:var(--rose)}
+.stats span{font-size:.85rem;color:var(--muted)}
+
+/* scrollytelling */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.vis{position:sticky;top:5.5rem;height:calc(100vh - 7rem);display:grid;place-items:center}
+.big{position:relative;width:min(100%,360px);aspect-ratio:3/4}
+.big i{position:absolute;inset:0;background:var(--c);filter:url(#deckle);transform:rotate(var(--r)) scale(var(--s));transition:background .7s,transform .8s cubic-bezier(.3,1.3,.5,1)}
+.big b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:2.6rem;color:var(--ink);text-align:center;padding:2rem;transition:opacity .3s}
+.dots{position:absolute;bottom:0;display:flex;gap:.5rem}
+.dots u{width:.7rem;height:.7rem;border-radius:50%;background:#d8d0bb;transition:.3s}.dots u.on{background:var(--rose);transform:scale(1.4)}
+.st{min-height:80vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s}
+.st.on{opacity:1}
+.st h3{color:var(--rose);margin-bottom:.8rem;font-size:2.4rem}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem}
+.tile{background:var(--paper);border:1px solid #e3dccb;border-radius:16px;padding:1.8rem;text-decoration:none;display:block;transition:transform .25s,box-shadow .25s,background .25s}
+.tile:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 16px 30px rgba(80,60,30,.15);background:#fff}
+.tile h3{color:var(--rose);margin-bottom:.4rem}.tile p{margin:0;color:var(--muted);font-size:.93rem}
+.tile u{display:block;height:3px;width:2rem;background:var(--brown);margin-top:1rem;transition:width .3s}.tile:hover u{width:100%}
+
+/* page head */
+.ph{background:var(--o9);color:var(--cream);padding:4.5rem 0 3.5rem;position:relative;overflow:hidden}
+.ph h1{font-size:clamp(3rem,8vw,5.6rem)}.ph p{margin:1rem 0 0;font-size:1.1rem;opacity:.9}
+.ph .sheet{width:200px;right:5%;top:-30px;opacity:.5}
+
+/* tabs */
+.tabs [role=tablist]{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.tabs [role=tab]{padding:.7rem 1.3rem;border-radius:999px;border:2px solid var(--brown);background:transparent;color:var(--brown);font-weight:600;transition:.2s}
+.tabs [role=tab][aria-selected=true]{background:var(--brown);color:#fff}
+.tabs [role=tab]:hover{background:rgba(169,116,66,.15)}.tabs [role=tab][aria-selected=true]:hover{background:var(--brown)}
+.tabs [role=tabpanel]{display:none;animation:in .4s}.tabs [role=tabpanel].on{display:grid}
+.panel{background:var(--rose);color:var(--cream);border-radius:18px;padding:2.2rem;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.panel h3{font-size:2.4rem;margin-bottom:.8rem}.panel ul{margin:0;padding-left:1.1rem}.panel li{margin-bottom:.5rem}
+.panel .art{aspect-ratio:4/3;border-radius:12px;display:grid;place-items:center;font-family:var(--display);font-size:5rem;color:var(--ink)}
+.solo{display:none;background:var(--o7);color:var(--cream);border-radius:18px;padding:2.2rem}.solo.on{display:block}
+.solo h3{color:var(--mustard);margin-bottom:.6rem}.solo p{margin:0}
+
+/* goals */
+.goals{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;counter-reset:g}
+.goal{background:var(--paper);border:1px solid #e3dccb;border-radius:14px;padding:1.4rem;counter-increment:g}
+.goal::before{content:counter(g);font-family:var(--display);font-size:3rem;color:var(--brown);display:block;line-height:1}
+.quote{font-family:var(--display);font-style:italic;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.2;color:var(--brown);margin:2.5rem 0 0;max-width:26ch}
+
+/* ods */
+.odsl{display:grid;gap:1rem;margin-top:2.5rem}
+.odsc{background:rgba(0,0,0,.18);border-radius:16px;overflow:hidden}
+.odsc>button{width:100%;display:grid;grid-template-columns:6rem 1fr auto;gap:1.5rem;align-items:center;padding:1.4rem 1.8rem;background:none;border:0;text-align:left}
+.odsc .n{font-family:var(--display);font-size:4.6rem;line-height:1;color:var(--mustard)}
+.odsc>button::after{content:"+";font-size:2rem;transition:transform .3s}
+.odsc.open>button::after{transform:rotate(45deg)}
+.odsc .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s}
+.odsc.open .body{grid-template-rows:1fr}
+.odsc .body>div{overflow:hidden}.odsc .body p{padding:0 1.8rem 1.6rem 9.3rem;margin:0}
+
+/* calc */
+.calc{background:var(--paper);border:1px solid #e3dccb;border-radius:18px;padding:2.2rem;margin-top:2.5rem}
+.row{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.calc input[type=range],.tl input[type=range]{accent-color:var(--rose);flex:1;min-width:200px}
+.calc input[type=number]{font:inherit;font-size:1.3rem;width:9rem;padding:.4rem .7rem;border:2px solid var(--o7);border-radius:10px;background:#fff}
+.out{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem}
+.out div{background:var(--cream);border-radius:12px;padding:1.2rem}
+.out strong{display:block;font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--rose)}
+.out span{font-size:.88rem;color:var(--muted)}
+.meter{height:14px;border-radius:99px;background:#e9e1cf;margin-top:1.6rem;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--rose));transition:width .5s}
+.note{font-size:.82rem;color:var(--muted);margin:1rem 0 0}
+
+/* timeline */
+.track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:2.5rem 0 1.5rem}
+.track::before,.track i{content:"";position:absolute;left:0;top:1.1rem;height:4px;border-radius:4px}
+.track::before{right:0;background:#d8d0bb}.track i{width:var(--w,0%);background:var(--rose);transition:width .5s}
+.track button{position:relative;background:none;border:0;text-align:center;padding:0 .3rem}
+.track button span{display:block;width:2.4rem;height:2.4rem;border-radius:50%;margin:0 auto .6rem;background:var(--cream);border:3px solid #d8d0bb;display:grid;place-items:center;font-weight:600;transition:.3s}
+.track button.done span{border-color:var(--rose);background:var(--rose);color:#fff}
+.track button[aria-selected=true] span{transform:scale(1.25);border-color:var(--brown);background:var(--brown);color:#fff}
+.track b{font-family:var(--display);font-size:1.3rem;font-weight:600;display:block;line-height:1.1}.track small{color:var(--muted)}
+.tlp{background:var(--paper);border:1px solid #e3dccb;border-radius:16px;padding:2rem;min-height:9rem}
+.tlp h3{color:var(--rose);margin-bottom:.4rem}
+.mes{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;font-weight:600}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2.5rem;padding:0;list-style:none}
+.team li{background:var(--paper);border:1px solid #e3dccb;border-radius:16px;padding:1.6rem;transition:transform .25s}
+.team li:hover{transform:translateY(-6px)}
+.team .av{width:4.2rem;height:4.2rem;position:relative;margin-bottom:1rem}
+.team .av i{position:absolute;inset:0;background:var(--c);filter:url(#deckle)}
+.team .av b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:1.8rem}
+.team b.nm{font-family:var(--display);font-size:1.5rem;font-weight:600;display:block;line-height:1.15}
+
+footer{background:var(--o9);color:var(--cream);padding:2.5rem 0;font-size:.88rem}
+footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
+#top{position:fixed;right:1.2rem;bottom:1.2rem;width:3rem;height:3rem;border-radius:50%;border:0;background:var(--brown);color:#fff;font-size:1.3rem;opacity:0;pointer-events:none;transition:.3s;z-index:20}
+#top.show{opacity:1;pointer-events:auto}
+
+
+.fl,.fl3,.press,.bob,.spin,.grow,.tw,.rp{transform-box:fill-box;transform-origin:center}
+.fl{animation:fl 3.2s ease-in infinite}
+@keyframes fl{0%{transform:translateY(0) rotate(-10deg);opacity:0}12%{opacity:1}100%{transform:translateY(135px) rotate(12deg);opacity:1}}
+.fl3{animation:fl3 3.6s ease-in infinite}
+@keyframes fl3{0%{transform:translateY(0) rotate(0);opacity:0}12%{opacity:1}80%{transform:translateY(var(--d)) rotate(160deg);opacity:1}100%{transform:translateY(var(--d)) rotate(190deg);opacity:0}}
+.press{animation:pr 2.6s ease-in-out infinite}@keyframes pr{0%,100%{transform:translateY(0)}50%{transform:translateY(64px)}}
+.bob{animation:bob 3s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-10px) rotate(3deg)}}
+.rp{opacity:0;animation:rp 3.6s ease-out infinite}@keyframes rp{0%{transform:scale(.2);opacity:.8}60%,100%{transform:scale(1.5);opacity:0}}
+.spin{animation:spin 6s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.grow{transform-origin:50% 100%;animation:gr 3s ease-in-out infinite}@keyframes gr{50%{transform:scale(1.18)}}
+.tw{animation:tw 1.8s ease-in-out infinite}@keyframes tw{50%{transform:scale(1.6);opacity:.35}}
+.art{overflow:hidden}.art svg{width:100%;height:100%;display:block}
+.big b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;font-size:2rem;padding:1.5rem}
+.il{width:88%;animation:sw .6s ease}.il svg{width:100%;display:block}
+@keyframes sw{from{opacity:0;transform:scale(.85)}}
+.tile.wide{grid-column:1/-1;background:var(--mustard);border-color:var(--mustard)}.tile.wide h3{color:var(--o9)}.tile.wide p{color:#4a4630}
+.odsc>button{grid-template-columns:6rem 1fr 84px auto}.ic{width:84px;height:84px;overflow:visible}.sw3{transform-box:fill-box;transform-origin:50% 0;animation:swg3 3.4s ease-in-out infinite}@keyframes swg3{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}.sw2{transform-box:fill-box;transform-origin:50% 0;animation:swg 2.4s ease-in-out infinite}@keyframes swg{50%{transform:rotate(16deg)}}
+.cyc{margin-top:2rem}.cyc svg{width:100%;height:auto;max-height:340px}.cyc text{fill:var(--cream);font:500 15px var(--body)}
+.lead{font-size:1.1rem}.cyc text.cap{font:italic 500 26px var(--display);fill:var(--mustard)}
+.pn{background:var(--paper);border:1px solid #e3dccb;border-radius:18px;padding:2rem}
+.tabs .pn.on{display:block}
+.pk{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.2rem 0 1.6rem}
+.pick{text-align:left;padding:1rem 1.2rem;border-radius:14px;border:2px solid #d8d0bb;background:var(--paper);font-weight:500;transition:.2s;display:flex;gap:.8rem;align-items:center}
+.pick:hover{border-color:var(--brown)}
+.pick::before{content:"";width:1.4rem;height:1.4rem;border-radius:6px;border:2px solid var(--brown);flex:none;background:#fff}
+.pick[aria-pressed=true]{border-color:var(--brown);background:#f4e6d4}
+.pick[aria-pressed=true]::before{background:var(--brown) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10l4 4 8-8' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E") center/80% no-repeat}
+.pledge{background:#fff;border:2px dashed var(--brown);border-radius:18px;padding:1.6rem;margin-top:1.6rem}
+.pledge q{font-family:var(--display);font-size:1.7rem;line-height:1.25;display:block;quotes:none;color:var(--rose)}
+.share{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem}
+.share .btn{background:var(--o9);color:var(--cream);border-color:var(--o9);font:inherit;font-weight:600;cursor:pointer}
+.share .btn:hover{background:var(--brown);border-color:var(--brown)}
+.gstat{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;margin-bottom:.5rem}
+.gitem{font-size:5.5rem;text-align:center;line-height:1.1;animation:pop .5s}
+@keyframes pop{from{transform:scale(.4) rotate(-20deg);opacity:0}}
+.gname{text-align:center;font-family:var(--display);font-size:2rem;margin-bottom:1.2rem}
+.bins{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem}
+.bins button{padding:1rem .4rem;border-radius:12px;border:2px solid rgba(0,0,0,.18);font-weight:600;font-size:.85rem;transition:transform .15s}
+.bins button:hover:not(:disabled){transform:translateY(-4px)}
+.bins [data-k=b]{background:#f6f3ea}.bins [data-k=p]{background:#b9c0c4}.bins [data-k=c]{background:#d8b88a}.bins [data-k=m]{background:#e8b4b0}.bins [data-k=x]{background:#c9d8c4}
+.bins button.ok{outline:4px solid #4a8a3c}.bins button.no{outline:4px solid #b3392f}
+.gfb{min-height:4rem;font-weight:500;margin-top:1.2rem}
+@media(max-width:900px){.pk{grid-template-columns:1fr}.bins{grid-template-columns:repeat(2,1fr)}.ic{width:56px;height:56px}}
+@media(max-width:900px){
+ .burger{display:block}
+ nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--o9);flex-direction:column;align-items:stretch;padding:.5rem 4%;gap:0}
+ nav ul.open{display:flex}
+ .menu{position:static;box-shadow:none;background:rgba(255,255,255,.08);margin:.3rem 0}.menu a{color:var(--cream)}.menu a small{color:#cfc8b3}.menu a:hover{background:rgba(255,255,255,.1)}
+ .story,.panel{grid-template-columns:1fr}.vis{height:42vh;top:4.2rem;z-index:2;background:var(--cream)}.big{width:min(60%,220px)}.big b{font-size:1.7rem}.dots{display:none}
+ .st{min-height:60vh}
+ .stats,.goals{grid-template-columns:1fr 1fr}.tiles{grid-template-columns:1fr}.out{grid-template-columns:1fr}
+ .odsc>button{grid-template-columns:4rem 1fr 56px auto;padding:1.2rem}.odsc .n{font-size:3.4rem}.odsc .body p{padding:0 1.2rem 1.4rem}
+ .sheet{width:44vw}.track b{font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="deckle" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="4" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+
+<nav>
+ <div class="wrap">
+  <b>No es la última página</b>
+  <button class="burger" aria-label="Abrir menú" aria-expanded="false">Menú</button>
+  <ul id="links">
+   <li><a href="#/inicio" data-r="inicio">Inicio</a></li>
+   <li class="dd"><button aria-expanded="false" aria-haspopup="true" data-g="proposito como">Proyecto</button>
+    <div class="menu">
+     <a href="#/proposito" data-r="proposito">Propósito<small>Por qué existe y qué buscamos</small></a>
+     <a href="#/como" data-r="como">Cómo funciona<small>Las cuatro etapas del papel</small></a>
+    </div></li>
+   <li><a href="#/ods" data-r="ods">ODS</a></li>
+   <li><a href="#/impacto" data-r="impacto">Impacto</a></li>
+   <li><a href="#/cronograma" data-r="cronograma">Cronograma</a></li>
+   <li><a href="#/participa" data-r="participa">Participa</a></li>
+   <li><a href="#/equipo" data-r="equipo">Equipo</a></li>
+  </ul>
+ </div>
+ <div id="bar"></div>
+</nav>
+
+<main>
+<!-- INICIO -->
+<div class="view" id="v-inicio">
+ <header class="hero">
+  <div class="sheet s4" data-sp=".12"></div><div class="sheet s3" data-sp="-.1"></div><div class="sheet s2" data-sp=".22"></div><div class="sheet s1" data-sp="-.18"></div>
+  <div class="wrap">
+   <h1>No es la <em>última página</em></h1>
+   <p>Recolectamos, clasificamos y transformamos papel en CUCEI para que cada hoja tenga otra vida.</p>
+   <div class="btns"><a class="btn" href="#/impacto">Calcula tu impacto</a><a class="btn ghost" href="#/proposito">Conoce el proyecto</a></div>
+  </div>
+ </header>
+ <section class="pad">
+  <div class="wrap stats">
+   <div><strong class="cnt" data-to="17">0</strong><span>árboles salvados por cada tonelada reciclada</span></div>
+   <div><strong class="cnt" data-to="26500">0</strong><span>litros de agua ahorrados por tonelada</span></div>
+   <div><strong class="cnt" data-to="3">0</strong><span>ODS que impulsa el proyecto</span></div>
+   <div><strong class="cnt" data-to="4">0</strong><span>etapas para volver a empezar</span></div>
+  </div>
+ </section>
+ <section class="pad" style="padding-top:0">
+  <div class="wrap">
+   <h2>De hoja usada a hoja nueva</h2>
+   <p style="margin-top:1rem">Sigue el recorrido: la hoja cambia mientras avanzas.</p>
+   <div class="story" id="story">
+    <div class="vis"><div class="big" id="big"><i></i><b><span class="il" id="bigil"></span><span id="bigl">Recolección</span></b></div><div class="dots"><u></u><u></u><u></u><u></u></div></div>
+    <div>
+     <div class="st" data-c="var(--kraft)" data-r="-6deg" data-s="1" data-l="Recolección"><h3>Recolección</h3><p>Contenedores fijos en escuelas, oficinas y centros comunitarios, más recolección puerta a puerta en días programados y alianzas con recolectores informales.</p></div>
+     <div class="st" data-c="var(--sage)" data-r="4deg" data-s=".94" data-l="Clasificación"><h3>Clasificación</h3><p>Separamos por tipo: blanco, periódico, cartón y mixto. Revisamos que no haya plásticos ni humedad.</p></div>
+     <div class="st" data-c="var(--pink)" data-r="-3deg" data-s="1.04" data-l="Transformación"><h3>Transformación</h3><p>Vendemos a recicladoras locales o lo convertimos en papel reciclado, cuadernos y tarjetas en talleres artesanales.</p></div>
+     <div class="st" data-c="var(--sky)" data-r="7deg" data-s=".98" data-l="Taller"><h3>Taller de concientización</h3><p>Sesiones participativas sobre separación y reutilización, con práctica: la comunidad hace su propio papel.</p></div>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="olive">
+  <div class="wrap">
+   <h2>Explora el proyecto</h2>
+   <div class="tiles">
+    <a class="tile rv" href="#/proposito"><h3>Propósito</h3><p>Por qué existe el proyecto y qué buscamos lograr.</p><u></u></a>
+    <a class="tile rv" href="#/como"><h3>Cómo funciona</h3><p>Las cuatro etapas, una por una.</p><u></u></a>
+    <a class="tile rv" href="#/ods"><h3>ODS</h3><p>Los tres objetivos de la ONU con los que trabajamos.</p><u></u></a>
+    <a class="tile rv" href="#/impacto"><h3>Impacto</h3><p>Calcula cuántos árboles y litros de agua se salvan.</p><u></u></a>
+    <a class="tile rv" href="#/cronograma"><h3>Cronograma</h3><p>De un piloto a un proyecto que se replica.</p><u></u></a>
+    <a class="tile rv" href="#/equipo"><h3>Equipo</h3><p>Las personas detrás de cada hoja.</p><u></u></a>
+    <a class="tile rv wide" href="#/participa"><h3>Participa</h3><p>Haz tu compromiso con el papel y prueba tu puntería clasificando residuos.</p><u></u></a>
+   </div>
+  </div>
+ </section>
+</div>
+
+<!-- PROPÓSITO -->
+<div class="view" id="v-proposito">
+ <header class="ph"><div class="sheet s1" aria-hidden="true"></div><div class="wrap"><h1>Propósito</h1><p>Una cultura de reciclaje que dura más que una campaña.</p></div></header>
+ <section>
+  <div class="wrap">
+   <p class="rv" style="font-size:1.15rem">Queremos fomentar una cultura duradera de reciclaje y sostenibilidad dentro de la institución educativa. No nos limitamos a recolectar: buscamos un aprendizaje significativo. Al enseñar a la comunidad a fabricar y personalizar sus propios útiles, mostramos el valor real de la economía circular y reducimos la huella ecológica del campus.</p>
+   <p class="quote rv">Pequeñas acciones locales, gran impacto global.</p>
+   <div class="goals">
+    <div class="goal rv">Disminuir el papel que llega a los rellenos sanitarios.</div>
+    <div class="goal rv">Educar a la comunidad sobre el reciclaje a pequeña escala.</div>
+    <div class="goal rv">Generar ingresos o beneficios sociales con el papel recolectado.</div>
+    <div class="goal rv">Crear una cultura de separación de residuos desde el hogar.</div>
+   </div>
+  </div>
+ </section>
+ <section class="dark">
+  <div class="wrap">
+   <h2>El ciclo de una hoja</h2>
+   <div class="cyc"><svg viewBox="0 0 600 290" role="img" aria-label="Ciclo: recolectamos, clasificamos, transformamos y enseñamos">
+    <path d="M140 80H460A70 70 0 0 1 460 220H140A70 70 0 0 1 140 80" fill="none" stroke="rgba(249,245,236,.35)" stroke-width="3" stroke-dasharray="6 8"/>
+    <circle cx="140" cy="80" r="30" fill="#c9a77c"><animate attributeName="r" values="30;38;30;30" keyTimes="0;.03;.1;1" dur="9s" repeatCount="indefinite"/></circle><circle cx="460" cy="80" r="30" fill="#b9c7b4"><animate attributeName="r" values="30;30;38;30;30" keyTimes="0;0.276;0.316;0.396;1" dur="9s" repeatCount="indefinite"/></circle><circle cx="460" cy="220" r="30" fill="#e8c4c0"><animate attributeName="r" values="30;30;38;30;30" keyTimes="0;0.480;0.520;0.600;1" dur="9s" repeatCount="indefinite"/></circle><circle cx="140" cy="220" r="30" fill="#b7d3e0"><animate attributeName="r" values="30;30;38;30;30" keyTimes="0;0.776;0.816;0.896;1" dur="9s" repeatCount="indefinite"/></circle>
+    <text x="140" y="34" text-anchor="middle">Recolectamos</text><text x="460" y="34" text-anchor="middle">Clasificamos</text>
+    <text x="460" y="282" text-anchor="middle">Transformamos</text><text x="140" y="282" text-anchor="middle">Enseñamos</text>
+    <text class="cap" x="300" y="157" text-anchor="middle" opacity="1">Papel usado, recién recogido<animate attributeName="opacity" values="1;0;0;0" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></text><text class="cap" x="300" y="157" text-anchor="middle" opacity="0">Papel separado y limpio<animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></text><text class="cap" x="300" y="157" text-anchor="middle" opacity="0">Papel reciclado, como nuevo<animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></text><text class="cap" x="300" y="157" text-anchor="middle" opacity="0">Papel hecho a mano por la comunidad<animate attributeName="opacity" values="0;0;0;1" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></text>
+    <g><g><animateTransform attributeName="transform" type="scale" values="1;1.5;1;1;1.5;1;1;1.5;1;1;1.5;1;1" keyTimes="0;.03;.07;.296;.326;.366;.5;.53;.57;.796;.826;.866;1" dur="9s" repeatCount="indefinite"/><g opacity="1"><g stroke="rgba(0,0,0,.28)" stroke-width="1"><rect x="-17" y="-21" width="32" height="42" rx="2" fill="#e8dcc0" transform="rotate(-9)"/><rect x="-16" y="-21" width="32" height="42" rx="2" fill="#f3ead2" transform="rotate(5)"/><rect x="-16" y="-22" width="32" height="42" rx="2" fill="#fff"/></g><rect x="-18" y="-4" width="36" height="6" fill="#a97442"/><path d="M0 -1l-9 -8 3 9zM0 -1l9 -8 -3 9z" fill="#8a5a2e"/><circle cx="0" cy="-1" r="2.6" fill="#6b4423"/><animate attributeName="opacity" values="1;0;0;0" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></g><g opacity="0"><rect x="-17" y="-22" width="34" height="44" rx="2" fill="#fff" stroke="rgba(0,0,0,.3)"/><path d="M-10 -12h18M-10 -5h18M-10 2h10" stroke="#c4cbc0" stroke-width="2.4" stroke-linecap="round"/><circle cx="11" cy="15" r="11" fill="#4a8a3c" stroke="#fff" stroke-width="2"/><path d="M5 15l4 4 8-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></g><g opacity="0"><rect x="-17" y="-22" width="36" height="46" rx="4" fill="#95524a" stroke="rgba(0,0,0,.3)"/><rect x="-6" y="-12" width="20" height="14" rx="2" fill="#f3ead2"/><path d="M-3 -7h14M-3 -3h9" stroke="#95524a" stroke-width="2" stroke-linecap="round"/><g fill="#fff" stroke="#3d3e32" stroke-width="1.6"><circle cx="-17" cy="-13" r="3"/><circle cx="-17" cy="-4" r="3"/><circle cx="-17" cy="5" r="3"/><circle cx="-17" cy="14" r="3"/></g><path d="M5 12l3-5 3 5 5 0 -4 3 2 5 -6-3 -6 3 2-5 -4-3z" fill="#e6d28f" transform="translate(-1 3) scale(.8)"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></g><g opacity="0"><rect x="-17" y="-22" width="34" height="44" rx="2" fill="#f3ead2" stroke="rgba(0,0,0,.3)"/><path d="M-9 -12a9 9 0 1 1 18 0c0 4-3 5-3 9h-12c0-4-3-5-3-9z" transform="translate(0 8)" fill="#f2c94c" stroke="#b8902a" stroke-width="1.4"/><rect x="-5" y="6" width="10" height="3.5" rx="1.5" fill="#8d8d8d"/><rect x="-3.5" y="10.5" width="7" height="3" rx="1.5" fill="#6d6d6d"/><path d="M-15 -3l-4 -2M15 -3l4 -2M0 -19v-4" stroke="#b8902a" stroke-width="2" stroke-linecap="round" transform="translate(0 6)"/><animate attributeName="opacity" values="0;0;0;1" keyTimes="0;.296;.5;.796" calcMode="discrete" dur="9s" repeatCount="indefinite"/></g></g><animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="M140 80H460A70 70 0 0 1 460 220H140A70 70 0 0 1 140 80"/></g>
+   </svg></div>
+  </div>
+ </section>
+ <section class="olive">
+  <div class="wrap">
+   <div class="solo on" style="background:rgba(0,0,0,.18)"><h3>Cómo lo mantenemos</h3><p>Un comité ecológico estudiantil vacía los contenedores, revisa los materiales del taller (bastidores, prensas, tintas) y programa una sesión formativa al mes para asegurar la continuidad.</p></div>
+   <div class="btns"><a class="btn" href="#/participa">Quiero participar</a></div>
+  </div>
+ </section>
+</div>
+
+<!-- CÓMO FUNCIONA -->
+<div class="view" id="v-como">
+ <header class="ph"><div class="sheet s2" aria-hidden="true"></div><div class="wrap"><h1>Cómo funciona</h1><p>Elige una etapa para ver qué pasa con el papel.</p></div></header>
+ <section>
+  <div class="wrap tabs">
+   <div role="tablist" aria-label="Etapas del proceso">
+    <button role="tab" aria-selected="true">Recolección</button><button role="tab" aria-selected="false">Clasificación</button><button role="tab" aria-selected="false">Transformación</button><button role="tab" aria-selected="false">Taller</button>
+   </div>
+   <div class="panel on" role="tabpanel"><div><h3>Recolección</h3><ul><li>Puntos fijos: contenedores en escuelas, oficinas y centros comunitarios.</li><li>Recolección puerta a puerta en días programados.</li><li>Alianzas con recolectores informales.</li></ul></div><div class="art" data-ill="0" style="background:var(--kraft)"></div></div>
+   <div class="panel" role="tabpanel"><div><h3>Clasificación</h3><ul><li>Separación por tipo: blanco, periódico, cartón y mixto.</li><li>Verificación de calidad: sin plásticos y sin humedad.</li></ul></div><div class="art" data-ill="1" style="background:var(--sage)"></div></div>
+   <div class="panel" role="tabpanel"><div><h3>Transformación</h3><ul><li>Venta a recicladoras locales, o</li><li>talleres de transformación artesanal: papel reciclado, cuadernos y tarjetas.</li></ul></div><div class="art" data-ill="2" style="background:var(--pink)"></div></div>
+   <div class="panel" role="tabpanel"><div><h3>Taller de concientización</h3><ul><li>Sesiones participativas sobre separación, beneficios y reutilización.</li><li>Actividades prácticas: hacer papel reciclado y manualidades.</li></ul></div><div class="art" data-ill="3" style="background:var(--sky)"></div></div>
+  </div>
+ </section>
+</div>
+
+<!-- ODS -->
+<div class="view" id="v-ods">
+ <header class="ph"><div class="sheet s3" aria-hidden="true"></div><div class="wrap"><h1>Objetivos de Desarrollo Sostenible</h1><p>Toca un objetivo para ver cómo lo aporta el proyecto.</p></div></header>
+ <section class="olive">
+  <div class="wrap odsl">
+   <div class="odsc open"><button aria-expanded="true"><span class="n">12</span><h3>Producción y consumo responsables</h3><svg class="ic" viewBox="0 0 80 80" aria-hidden="true"><g class="spin" style="transform-box:view-box;transform-origin:40px 40px;animation-duration:14s" fill="#f9f5ec" stroke="#f9f5ec" stroke-linejoin="round"><g fill="none" stroke-width="7" stroke-linecap="butt"><path d="M40.0 14.0A26 26 0 0 1 65.4 34.6"/><path d="M62.5 53.0A26 26 0 0 1 32.0 64.7"/><path d="M17.5 53.0A26 26 0 0 1 22.6 20.7"/></g><g stroke-width="2"><path d="M74.7 32.6L56.1 36.6L65.5 46.9Z"/><path d="M29.0 73.8L34.9 55.7L21.3 58.6Z"/><path d="M16.2 13.6L29.0 27.7L33.2 14.5Z"/></g></g><rect x="34" y="33" width="12" height="14" rx="1.5" fill="#e6d28f"/><path d="M36.5 38h7M36.5 41.5h7M36.5 45h4" stroke="#6b6445" stroke-width="1.4" stroke-linecap="round"/></svg></button><div class="body"><div><p>Es el más directo. La meta 12.5 busca reducir la generación de desechos mediante el reciclaje y la reutilización. Aquí entran la recolección, la clasificación y la transformación del papel.</p></div></div></div>
+   <div class="odsc"><button aria-expanded="false"><span class="n">13</span><h3>Acción por el clima</h3><svg class="ic" viewBox="0 0 80 80" aria-hidden="true"><g class="spin" style="animation-duration:14s"><circle cx="66" cy="14" r="6" fill="#e6d28f"/><g stroke="#e6d28f" stroke-width="2.4" stroke-linecap="round"><path d="M66 2v3M66 23v3M54 14h3M75 14h3M57.5 5.5l2 2M72.5 20.5l2 2M57.5 22.5l2-2M72.5 7.5l2-2"/></g></g><path d="M8 68h64" fill="none" stroke="#f9f5ec" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 68V46M40 58l-8-8M40 53l8-8" fill="none" stroke="#c9a77c" stroke-width="3.2" stroke-linecap="round"/><g class="grow"><circle cx="40" cy="30" r="15" fill="#8fb87a"/><circle cx="27" cy="39" r="10" fill="#7aa866"/><circle cx="53" cy="39" r="10" fill="#7aa866"/><path d="M34 28q4-5 9-3" stroke="#b9d6a8" stroke-width="2.4" stroke-linecap="round" fill="none"/></g></svg></button><div class="body"><div><p>Al reciclar papel se evita la tala de árboles y se reducen las emisiones de CO₂ asociadas a la producción de papel virgen.</p></div></div></div>
+   <div class="odsc"><button aria-expanded="false"><span class="n">4</span><h3>Educación de calidad</h3><svg class="ic" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 70Q26 62 10 66V44Q26 40 40 48Z" fill="#f9f5ec" stroke="#f9f5ec" stroke-width="2" stroke-linejoin="round"/><path d="M40 70Q54 62 70 66V44Q54 40 40 48Z" fill="#e6d28f" stroke="#e6d28f" stroke-width="2" stroke-linejoin="round"/><path d="M26 24v8c0 5 28 5 28 0v-8" fill="#6b6445" stroke="#f9f5ec" stroke-width="2.4" stroke-linejoin="round"/><path d="M40 8L68 19L40 30L12 19Z" fill="#e6d28f" stroke="#f9f5ec" stroke-width="2.4" stroke-linejoin="round"/><g class="sw2"><path d="M62 21v12" stroke="#f9f5ec" stroke-width="2.4" stroke-linecap="round"/><circle cx="62" cy="36" r="3" fill="#f9f5ec"/></g></svg></button><div class="body"><div><p>Los talleres y charlas sobre la importancia del reciclaje en escuelas y comunidades convierten el proyecto en aprendizaje.</p></div></div></div>
+  </div>
+ </section>
+</div>
+
+<!-- IMPACTO -->
+<div class="view" id="v-impacto">
+ <header class="ph"><div class="sheet s4" aria-hidden="true"></div><div class="wrap"><h1>Impacto</h1><p>¿Cuánto cambia una caja de papel?</p></div></header>
+ <section>
+  <div class="wrap">
+   <div class="calc" style="margin-top:0">
+    <label for="kgn" style="font-weight:600;display:block;margin-bottom:.6rem">Papel reciclado (kg)</label>
+    <div class="row"><input id="kgn" type="number" min="0" max="5000" step="1" value="100"><input id="kg" type="range" min="0" max="2000" step="5" value="100" aria-label="Kilogramos de papel"></div>
+    <div class="out" aria-live="polite">
+     <div><strong id="o-arb">1.7</strong><span>árboles que no se talan</span></div>
+     <div><strong id="o-agua">2,650</strong><span>litros de agua ahorrados</span></div>
+     <div><strong id="o-hojas">20,000</strong><span>hojas tamaño carta (aprox.)</span></div>
+    </div>
+    <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+    <p class="note">La barra muestra cuánto falta para una tonelada. Cálculo con los datos del proyecto: 1 tonelada reciclada salva 17 árboles y ahorra 26,500 litros de agua. Las hojas se estiman a 5 g cada una.</p>
+   </div>
+  </div>
+ </section>
+</div>
+
+<!-- CRONOGRAMA -->
+<div class="view" id="v-cronograma">
+ <header class="ph"><div class="sheet s1" aria-hidden="true"></div><div class="wrap"><h1>Cronograma</h1><p>Cuatro fases para pasar de un piloto a un proyecto replicable.</p></div></header>
+ <section>
+  <div class="wrap tl">
+   <div class="track" id="track" role="tablist" aria-label="Fases">
+    <i></i>
+    <button role="tab"><span>1</span><b>Piloto</b><small>Meses 1 a 3</small></button>
+    <button role="tab"><span>2</span><b>Expansión local</b><small>Meses 4 a 9</small></button>
+    <button role="tab"><span>3</span><b>Consolidación</b><small>Meses 10 a 18</small></button>
+    <button role="tab"><span>4</span><b>Escalamiento</b><small>Año 2 en adelante</small></button>
+   </div>
+   <div class="tlp" id="tlp" aria-live="polite"></div>
+   <div class="mes"><label for="mes">Mes del proyecto:</label><input id="mes" type="range" min="1" max="24" value="1" style="flex:1;accent-color:var(--rose)"><output id="meso">1</output></div>
+  </div>
+ </section>
+</div>
+
+<!-- PARTICIPA -->
+<div class="view" id="v-participa">
+ <header class="ph"><div class="sheet s3" aria-hidden="true"></div><div class="wrap"><h1>Participa</h1><p>Tu papel también cuenta. Elige cómo sumarte.</p></div></header>
+ <section>
+  <div class="wrap tabs">
+   <div role="tablist" aria-label="Formas de participar"><button role="tab" aria-selected="true">Mi compromiso</button><button role="tab" aria-selected="false">Juego: ¿a dónde va?</button></div>
+   <div class="pn on" role="tabpanel">
+    <h3 style="color:var(--rose)">¿Qué vas a hacer?</h3>
+    <div class="pk">
+     <button class="pick" aria-pressed="true" data-t="separar mi papel en casa">Separar mi papel en casa</button>
+     <button class="pick" aria-pressed="false" data-t="llevar mi papel a un contenedor">Llevar mi papel a un contenedor</button>
+     <button class="pick" aria-pressed="false" data-t="ir a un taller de papel reciclado">Ir a un taller de papel reciclado</button>
+     <button class="pick" aria-pressed="false" data-t="sumarme al comité ecológico estudiantil">Sumarme al comité ecológico</button>
+     <button class="pick" aria-pressed="false" data-t="invitar a un amigo">Invitar a un amigo</button>
+    </div>
+    <label for="pk" style="font-weight:600">Papel que separaré al mes: <output id="pkv">5</output> kg</label>
+    <div class="row" style="margin-top:.6rem"><input id="pk" type="range" min="1" max="30" value="5" style="flex:1;accent-color:var(--rose)"></div>
+    <div class="out" aria-live="polite">
+     <div><strong id="p-kg">60</strong><span>kg de papel al año</span></div>
+     <div><strong id="p-arb">1.0</strong><span>árboles salvados al año</span></div>
+     <div><strong id="p-agua">1,590</strong><span>litros de agua ahorrados</span></div>
+    </div>
+    <div class="pledge"><q id="pmsg"></q>
+     <div class="share"><button class="btn" id="pcopy" type="button">Copiar mi compromiso</button><a class="btn" id="wa" target="_blank" rel="noopener">Compartir por WhatsApp</a></div>
+    </div>
+    <p class="note">No guardamos nada: tu compromiso se queda en tu pantalla hasta que decidas compartirlo.</p>
+   </div>
+   <div class="pn" role="tabpanel">
+    <div class="gstat"><span id="gn">Pregunta 1 de 8</span><span id="gs">Aciertos: 0</span></div>
+    <div id="gplay">
+     <div class="gitem" id="gi"></div><div class="gname" id="gt"></div>
+     <div class="bins"><button data-k="b">Blanco</button><button data-k="p">Periódico</button><button data-k="c">Cartón</button><button data-k="m">Mixto</button><button data-k="x">Rechazado</button></div>
+     <div class="gfb" id="gf" aria-live="polite">Elige el contenedor correcto para este papel.</div>
+     <button class="btn" id="gnext" type="button" style="display:none;background:var(--o9);color:var(--cream);border-color:var(--o9)">Siguiente</button>
+    </div>
+   </div>
+  </div>
+ </section>
+</div>
+
+<!-- EQUIPO -->
+<div class="view" id="v-equipo">
+ <header class="ph"><div class="sheet s2" aria-hidden="true"></div><div class="wrap"><h1>Equipo</h1><p>Las personas detrás de cada hoja.</p></div></header>
+ <section>
+  <div class="wrap">
+   <ul class="team">
+    <li class="rv"><div class="av" style="--c:var(--pink)"><i></i><b>AH</b></div><b class="nm">Angel Noé Haro Ramírez</b></li>
+    <li class="rv"><div class="av" style="--c:var(--sage)"><i></i><b>EJ</b></div><b class="nm">Elba Jimena Jimenez de Alba</b></li>
+    <li class="rv"><div class="av" style="--c:var(--sky)"><i></i><b>GP</b></div><b class="nm">Gustavo Pichardo Valencia</b></li>
+    <li class="rv"><div class="av" style="--c:var(--mustard)"><i></i><b>YT</b></div><b class="nm">Yosef Dilan Temores Aldana</b></li>
+   </ul>
+  </div>
+ </section>
+</div>
+</main>
+
+<footer><div class="wrap"><p><strong>No es la última página.</strong> Proyecto de reciclaje de papel en CUCEI, alineado a los ODS 12, 13 y 4.</p><p>Esta página no recoge datos personales de quienes la visitan.</p></div></footer>
+<button id="top" aria-label="Volver arriba">↑</button>
+
+<script>
+(function(){
+var $=function(s,c){return(c||document).querySelector(s)},$$=function(s,c){return[].slice.call((c||document).querySelectorAll(s))};
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var T={inicio:'Inicio',proposito:'Propósito',como:'Cómo funciona',ods:'ODS',impacto:'Impacto',cronograma:'Cronograma',participa:'Participa',equipo:'Equipo'};
+var ul=$('#links'),burger=$('.burger'),dd=$('.dd');
+
+/* ---- router por hash ---- */
+function route(){
+  var id=(location.hash.replace('#/','')||'inicio');if(!T[id])id='inicio';
+  $$('.view').forEach(function(v){v.classList.toggle('on',v.id==='v-'+id)});
+  $$('[data-r]').forEach(function(a){var on=a.dataset.r===id;a.classList.toggle('act',on);if(a.tagName==='A'){on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')}});
+  $('.dd>button').classList.toggle('act',$('.dd>button').dataset.g.split(' ').indexOf(id)>-1);
+  document.title=T[id]+' | No es la última página';
+  scrollTo(0,0);closeMenus();watch(id);onScroll();
+}
+function closeMenus(){ul.classList.remove('open');burger.setAttribute('aria-expanded','false');dd.classList.remove('open');$('.dd>button').setAttribute('aria-expanded','false')}
+burger.onclick=function(){var o=ul.classList.toggle('open');burger.setAttribute('aria-expanded',o)};
+$('.dd>button').onclick=function(e){e.stopPropagation();var o=dd.classList.toggle('open');this.setAttribute('aria-expanded',o)};
+document.addEventListener('click',function(e){if(!dd.contains(e.target))dd.classList.remove('open')});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenus()});
+addEventListener('hashchange',route);
+
+/* ---- aparecer, contadores y relato al hacer scroll ---- */
+function count(el){
+  var to=+el.dataset.to,t0=null;
+  if(reduce){el.textContent=to.toLocaleString('es-MX');return}
+  (function f(t){t0=t0||t;var p=Math.min((t-t0)/1300,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e).toLocaleString('es-MX');if(p<1)requestAnimationFrame(f)})(performance.now());
+}
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;
+  if(x.target.classList.contains('cnt')){count(x.target)}else x.target.classList.add('in');io.unobserve(x.target)})},{threshold:.35});
+function watch(id){$$('#v-'+id+' .rv, #v-'+id+' .cnt').forEach(function(e){if(!e.classList.contains('in')&&!e.dataset.done){io.observe(e)}});$$('#v-'+id+' .cnt').forEach(function(e){e.dataset.done=1})}
+
+var sts=$$('.st'),big=$('#big'),bigl=$('#bigl'),bigil=$('#bigil'),dots=$$('.dots u');
+var cur=-1;
+function setStage(i){
+  if(i===cur)return;cur=i;var s=sts[i];
+  sts.forEach(function(o){o.classList.toggle('on',o===s)});
+  big.style.setProperty('--c',s.dataset.c);big.style.setProperty('--r',s.dataset.r);big.style.setProperty('--s',s.dataset.s);
+  bigl.textContent=s.dataset.l;if(ILL)bigil.innerHTML=ILL[i];dots.forEach(function(d,j){d.classList.toggle('on',j===i)});
+}
+function stageByScroll(){
+  if(!$('#v-inicio').classList.contains('on'))return;
+  var line=innerHeight*.55,i=0;
+  sts.forEach(function(s,j){if(s.getBoundingClientRect().top<=line)i=j});
+  setStage(i);
+}
+setStage(0);
+
+/* ---- barra de progreso, parallax y volver arriba ---- */
+var bar=$('#bar'),top=$('#top'),tick=false;
+function onScroll(){
+  var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  bar.style.width=(h>0?y/h*100:0)+'%';top.classList.toggle('show',y>600);
+  if(!reduce)$$('#v-inicio .sheet').forEach(function(s){s.style.setProperty('--ty',(y*parseFloat(s.dataset.sp)).toFixed(1)+'px')});
+  stageByScroll();tick=false;
+}
+addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
+top.onclick=function(){scrollTo({top:0,behavior:reduce?'auto':'smooth'})};
+
+/* ---- pestañas genéricas ---- */
+$$('.tabs').forEach(function(t){
+  var tabs=$$('[role=tab]',t),panels=$$('[role=tabpanel]',t);
+  tabs.forEach(function(b,i){b.onclick=function(){tabs.forEach(function(o,j){o.setAttribute('aria-selected',j===i)});panels.forEach(function(p,j){p.classList.toggle('on',j===i)})};
+    b.onkeydown=function(e){var k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k){var n=tabs[(i+k+tabs.length)%tabs.length];n.focus();n.click()}}});
+});
+
+/* ---- ODS acordeón ---- */
+$$('.odsc>button').forEach(function(b){b.onclick=function(){var c=b.parentNode,o=!c.classList.contains('open');
+  $$('.odsc').forEach(function(x){x.classList.remove('open');$('button',x).setAttribute('aria-expanded','false')});
+  if(o){c.classList.add('open');b.setAttribute('aria-expanded','true')}}});
+
+/* ---- calculadora ---- */
+var r=$('#kg'),n=$('#kgn');
+function fmt(v,d){return v.toLocaleString('es-MX',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function calc(kg){kg=Math.max(0,Number(kg)||0);
+  $('#o-arb').textContent=fmt(kg/1000*17,1);$('#o-agua').textContent=fmt(Math.round(kg/1000*26500),0);
+  $('#o-hojas').textContent=fmt(Math.round(kg/0.005),0);$('#meter').style.width=Math.min(kg/10,100)+'%'}
+r.oninput=function(){n.value=r.value;calc(r.value)};n.oninput=function(){r.value=Math.min(n.value,2000);calc(n.value)};calc(r.value);
+
+/* ---- cronograma ---- */
+var F=[['Fase 1: piloto','Meses 1 a 3','Implementar en un barrio o escuela y validar la logística.'],
+['Fase 2: expansión local','Meses 4 a 9','Ampliar a 3 a 5 zonas y sumar aliados como comercios y oficinas.'],
+['Fase 3: consolidación','Meses 10 a 18','Establecer centros de acopio fijos y formalizar alianzas.'],
+['Fase 4: escalamiento','Año 2 en adelante','Replicar en otras localidades y buscar financiamiento.']];
+var tb=$$('#track button'),mes=$('#mes'),meso=$('#meso'),first=[1,4,10,19];
+function phase(i,fromSlider){
+  tb.forEach(function(b,j){b.setAttribute('aria-selected',j===i);b.classList.toggle('done',j<i)});
+  $('#track').style.setProperty('--w',(i/3*75+12.5)+'%');
+  $('#tlp').innerHTML='<h3>'+F[i][0]+'</h3><p style="color:var(--rose);font-weight:600;margin-bottom:.4rem">'+F[i][1]+'</p><p style="margin:0">'+F[i][2]+'</p>';
+  if(!fromSlider){mes.value=first[i];meso.textContent=first[i]}
+}
+tb.forEach(function(b,i){b.onclick=function(){phase(i)}});
+mes.oninput=function(){var m=+mes.value;meso.textContent=m;phase(m<=3?0:m<=9?1:m<=18?2:3,true)};
+phase(0);
+
+
+/* ---- ilustraciones animadas ---- */
+var ILL=[
+`<svg viewBox="0 0 400 300" role="img" aria-label="Hojas cayendo en un contenedor de reciclaje"><ellipse cx="200" cy="270" rx="150" ry="14" fill="rgba(0,0,0,.14)"/>
+<g class="fl"><rect x="165" y="10" width="38" height="48" rx="3" fill="#fff"/><path d="M172 24h24M172 33h24M172 42h14" stroke="#bbb" stroke-width="3"/></g>
+<g class="fl" style="animation-delay:.8s"><rect x="205" y="10" width="38" height="48" rx="3" fill="#f3e9c9"/><path d="M212 24h24M212 33h24" stroke="#cbbd96" stroke-width="3"/></g>
+<g class="fl" style="animation-delay:1.6s"><rect x="185" y="10" width="38" height="48" rx="3" fill="#dfe9f2"/><path d="M192 24h24M192 33h24" stroke="#a9bccd" stroke-width="3"/></g>
+<g class="fl" style="animation-delay:2.4s"><rect x="225" y="10" width="38" height="48" rx="3" fill="#fff"/><path d="M232 24h24M232 33h24" stroke="#bbb" stroke-width="3"/></g>
+<rect x="130" y="150" width="140" height="114" rx="10" fill="#5b8f4a"/><rect x="120" y="132" width="160" height="24" rx="8" fill="#477a39"/>
+<text x="200" y="236" font-size="64" text-anchor="middle" fill="#fff" font-family="sans-serif">♻</text></svg>`,
+`<svg viewBox="0 0 400 300" role="img" aria-label="Papel cayendo en cuatro contenedores por tipo"><ellipse cx="200" cy="268" rx="190" ry="10" fill="rgba(0,0,0,.12)"/>
+<g class="fl"><rect x="36" y="20" width="38" height="46" rx="3" fill="#fff" stroke="#ccc"/></g>
+<g class="fl" style="animation-delay:.7s"><rect x="126" y="20" width="38" height="46" rx="3" fill="#9aa3a8"/></g>
+<g class="fl" style="animation-delay:1.4s"><rect x="216" y="20" width="38" height="46" rx="3" fill="#b98a52"/></g>
+<g class="fl" style="animation-delay:2.1s"><rect x="306" y="20" width="38" height="46" rx="3" fill="#d98a8a"/></g>
+<rect x="15" y="150" width="80" height="112" rx="8" fill="#f6f3ea" stroke="#999"/><rect x="105" y="150" width="80" height="112" rx="8" fill="#9aa3a8"/><rect x="195" y="150" width="80" height="112" rx="8" fill="#b98a52"/><rect x="285" y="150" width="80" height="112" rx="8" fill="#d98a8a"/>
+<g fill="rgba(0,0,0,.35)"><rect x="25" y="158" width="60" height="6" rx="3"/><rect x="115" y="158" width="60" height="6" rx="3"/><rect x="205" y="158" width="60" height="6" rx="3"/><rect x="295" y="158" width="60" height="6" rx="3"/></g>
+<g font-size="13" font-weight="600" text-anchor="middle" fill="#2f2c25" font-family="sans-serif"><text x="55" y="290">Blanco</text><text x="145" y="290">Periódico</text><text x="235" y="290">Cartón</text><text x="325" y="290">Mixto</text></g></svg>`,
+`<svg viewBox="0 0 400 300" role="img" aria-label="Prensa convirtiendo hojas en cuadernos"><ellipse cx="200" cy="270" rx="170" ry="10" fill="rgba(0,0,0,.12)"/>
+<rect x="150" y="0" width="60" height="22" rx="4" fill="#555"/>
+<rect x="105" y="203" width="150" height="14" fill="#fff"/><rect x="105" y="217" width="150" height="14" fill="#e8dcc0"/><rect x="105" y="231" width="150" height="14" fill="#fff"/><rect x="90" y="247" width="180" height="14" rx="3" fill="#6b6445"/>
+<g class="press"><rect x="170" y="20" width="20" height="100" fill="#8d8d8d"/><rect x="100" y="120" width="160" height="16" rx="3" fill="#666"/></g>
+<g class="bob"><rect x="290" y="150" width="72" height="96" rx="5" fill="#8a5a3c"/><rect x="302" y="168" width="44" height="6" rx="3" fill="#e8dcc0"/><rect x="302" y="182" width="32" height="6" rx="3" fill="#e8dcc0"/><g fill="#fff" stroke="#333" stroke-width="2"><circle cx="290" cy="166" r="5"/><circle cx="290" cy="188" r="5"/><circle cx="290" cy="210" r="5"/><circle cx="290" cy="232" r="5"/></g></g></svg>`,
+`<svg viewBox="0 0 400 300" role="img" aria-label="Manos haciendo papel reciclado con pedacitos de papel y una hoja secándose"><ellipse cx="200" cy="278" rx="180" ry="9" fill="rgba(0,0,0,.12)"/>
+<path d="M30 178L42 252Q140 276 238 252L250 178Z" fill="#f1ece0" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+<ellipse cx="140" cy="178" rx="110" ry="30" fill="#f1ece0" stroke="rgba(0,0,0,.25)" stroke-width="2"/><ellipse cx="140" cy="179" rx="100" ry="24" fill="#7fb0c8"/>
+<path d="M60 182Q100 176 140 182T220 182" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+<g><path d="M88 166H192L206 192H74Z" fill="#dfe5e8" stroke="#b07a44" stroke-width="8" stroke-linejoin="round"/><g fill="#aab4bb"><circle cx="105" cy="180" r="1.6"/><circle cx="140" cy="174" r="1.6"/><circle cx="178" cy="184" r="1.6"/><circle cx="192" cy="178" r="1.6"/></g><g transform="translate(112 181) rotate(15) scale(0.6)"><polygon points="-8 -6,6 -8,9 2,1 9,-9 3" fill="#fff" stroke="rgba(0,0,0,.22)" stroke-width="1" stroke-linejoin="round"/><path d="M-4 -1h7M-4 3h5" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linecap="round"/></g><g transform="translate(160 177) rotate(-25) scale(0.55)"><polygon points="-10 -2,-2 -9,9 -5,7 6,-5 8" fill="#f3e9c9" stroke="rgba(0,0,0,.22)" stroke-width="1" stroke-linejoin="round"/><path d="M-4 -1h7M-4 3h5" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linecap="round"/></g><g transform="translate(150 186) rotate(40) scale(0.5)"><polygon points="-9 -5,2 -10,10 -3,6 8,-6 6" fill="#e8c4c0" stroke="rgba(0,0,0,.22)" stroke-width="1" stroke-linejoin="round"/><path d="M-4 -1h7M-4 3h5" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linecap="round"/></g></g>
+<ellipse class="rp" cx="125" cy="182" rx="22" ry="6" fill="none" stroke="#fff" stroke-width="2.5"/><ellipse class="rp" cx="175" cy="180" rx="22" ry="6" fill="none" stroke="#fff" stroke-width="2.5" style="animation-delay:1.6s"/>
+<g stroke="#e8b896" stroke-linecap="round" fill="none"><path d="M12 118L64 176" stroke-width="15"/><path d="M268 118L216 176" stroke-width="15"/></g>
+<g fill="#e8b896"><circle cx="68" cy="180" r="11"/><circle cx="212" cy="180" r="11"/></g>
+<g stroke="#e8b896" stroke-linecap="round" stroke-width="5" fill="none"><path d="M72 176L88 170M74 183L92 177M66 188L82 190"/><path d="M208 176L192 170M206 183L188 177M214 188L198 190"/></g>
+<g class="fl3" style="--d:165px"><g transform="translate(80 16) rotate(0) scale(1.2)"><polygon points="-9 -5,2 -10,10 -3,6 8,-6 6" fill="#ffffff" stroke="rgba(0,0,0,.22)" stroke-width="1" stroke-linejoin="round"/><path d="M-4 -1h7M-4 3h5" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linecap="round"/></g></g><g class="fl3" style="--d:172px;animation-delay:.9s"><g transform="translate(125 16) rotate(30) scale(1.3)"><polygon points="-8 -6,6 -8,9 2,1 9,-9 3" fill="#f3e9c9" stroke="rgba(0,0,0,.22)" stroke-width="1" stroke-linejoin="round"/><path d="M-4 -1h7M-4 3h5" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linecap="round"/></g></g><g class="fl3" style="--d:162px;animation-delay:1.8s"><g transform="translate(170 16) rotate(-20) scale(1.2)"><polygon points="-10 -2,-2 -9,9 -5,7 6,-5 8" fill="#e8c4c0" stroke="rgba(0,0,0,.22)" stroke-width="1" stroke-linejoin="round"/><path d="M-4 -1h7M-4 3h5" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linecap="round"/></g></g><g class="fl3" style="--d:170px;animation-delay:2.6s"><g transform="translate(205 16) rotate(50) scale(1.3)"><polygon points="-9 -5,2 -10,10 -3,6 8,-6 6" fill="#d6dde2" stroke="rgba(0,0,0,.22)" stroke-width="1" stroke-linejoin="round"/><path d="M-4 -1h7M-4 3h5" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linecap="round"/></g></g>
+<path d="M262 56H398" stroke="#6b6445" stroke-width="3"/>
+<g class="sw3"><path d="M294 56V160H372V56" fill="#fbf8ef" stroke="rgba(0,0,0,.25)" stroke-width="2" stroke-linejoin="round" transform="translate(0 4)"/>
+<rect x="290" y="50" width="8" height="14" rx="2" fill="#a97442"/><rect x="368" y="50" width="8" height="14" rx="2" fill="#a97442"/>
+<g fill="#cfc6ad"><circle cx="310" cy="85" r="1.8"/><circle cx="345" cy="78" r="1.8"/><circle cx="326" cy="108" r="1.8"/><circle cx="356" cy="122" r="1.8"/><circle cx="312" cy="136" r="1.8"/><circle cx="340" cy="146" r="1.8"/><circle cx="360" cy="96" r="1.4"/></g>
+<g fill="#e8c4c0"><circle cx="322" cy="92" r="1.6"/><circle cx="350" cy="136" r="1.6"/></g><g fill="#b7d3e0"><circle cx="338" cy="116" r="1.6"/><circle cx="308" cy="116" r="1.6"/></g></g></svg>`];
+$$('[data-ill]').forEach(function(e){e.innerHTML=ILL[e.dataset.ill]});
+bigil.innerHTML=ILL[0];
+
+/* ---- participa: compromiso ---- */
+var picks=$$('.pick'),pk=$('#pk');
+function pledge(){
+  var kg=+pk.value,yr=kg*12,arb=fmt(yr/1000*17,1),ag=fmt(Math.round(yr/1000*26500),0);
+  $('#pkv').textContent=kg;$('#p-kg').textContent=yr;$('#p-arb').textContent=arb;$('#p-agua').textContent=ag;
+  var sel=picks.filter(function(b){return b.getAttribute('aria-pressed')==='true'}).map(function(b){return b.dataset.t});
+  var m='Me sumo a «No es la última página»: separaré '+kg+' kg de papel al mes ('+yr+' kg al año, unos '+arb+' árboles salvados).';
+  if(sel.length)m+=' También voy a '+sel.join(', ')+'.';
+  m+=' ¿Te sumas?';
+  $('#pmsg').textContent=m;
+  $('#wa').href='https://wa.me/?text='+encodeURIComponent(m+(/^https?:/.test(location.href)?' '+location.href.split('#')[0]:''));
+}
+picks.forEach(function(b){b.onclick=function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');pledge()}});
+pk.oninput=pledge;pledge();
+$('#pcopy').onclick=function(){
+  var b=this,t=$('#pmsg').textContent;
+  function ok(){b.textContent='¡Copiado!';setTimeout(function(){b.textContent='Copiar mi compromiso'},1800)}
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(ok)}
+  else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
+};
+
+/* ---- participa: juego ---- */
+var G=[['📄','Hoja de cuaderno blanca','b','Es papel blanco, el más valioso para reciclar.'],
+['📰','Periódico de ayer','p','El periódico se separa en su propio contenedor.'],
+['📦','Caja de cartón de un envío','c','El cartón va con el cartón.'],
+['📚','Revistas y folletos de colores','m','Mezcla de papeles y tintas: va a mixto.'],
+['💧','Papel mojado','x','Se rechaza: el papel debe llegar seco.'],
+['🖨️','Hojas de impresora usadas por un lado','b','Siguen siendo papel blanco.'],
+['🧷','Hoja con cinta y plástico pegado','x','Se rechaza: el papel debe estar libre de plásticos.'],
+['✉️','Sobres de colores','m','Papeles de colores mezclados: mixto.']];
+var gi=0,gsc=0,gd=false,gb=$$('.bins button'),order=[];
+function gshow(){
+  if(gi>=G.length){
+    $('#gi').textContent=gsc>=7?'🏆':gsc>=4?'🌱':'📄';$('#gt').textContent='Acertaste '+gsc+' de '+G.length;
+    $('#gf').textContent=gsc>=7?'Ya puedes ser parte del comité ecológico.':'Con un poco más de práctica serás experto en clasificar.';
+    gb.forEach(function(b){b.disabled=true;b.className=''});var gn=$('#gnext');gn.textContent='Jugar otra vez';gn.style.display='';gi=-1;return}
+  var it=G[order[gi]];$('#gn').textContent='Pregunta '+(gi+1)+' de '+G.length;$('#gs').textContent='Aciertos: '+gsc;
+  var e=$('#gi');e.style.animation='none';void e.offsetWidth;e.style.animation='';
+  e.textContent=it[0];$('#gt').textContent=it[1];$('#gf').textContent='Elige el contenedor correcto para este papel.';
+  gb.forEach(function(b){b.disabled=false;b.className=''});$('#gnext').style.display='none';gd=false;
+}
+function gstart(){order=G.map(function(_,i){return i}).sort(function(){return Math.random()-.5});gi=0;gsc=0;$('#gnext').textContent='Siguiente';gshow()}
+gb.forEach(function(b){b.onclick=function(){
+  if(gd||gi<0)return;gd=true;var it=G[order[gi]],good=b.dataset.k===it[2];
+  gb.forEach(function(x){x.disabled=true;if(x.dataset.k===it[2])x.className='ok'});
+  if(good)gsc++;else b.className='no';
+  $('#gs').textContent='Aciertos: '+gsc;
+  $('#gf').textContent=(good?'¡Correcto! ':'Casi. ')+it[3];
+  var n=$('#gnext');n.textContent=gi===G.length-1?'Ver resultado':'Siguiente';n.style.display='';
+}});
+$('#gnext').onclick=function(){if(gi<0)gstart();else{gi++;gshow()}};
+gstart();
+
+if(reduce)$$('.cyc svg').forEach(function(v){v.pauseAnimations&&v.pauseAnimations()});
+route();onScroll();
+})();
+</script>
+</body>
+</html>
