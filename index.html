@@ -136,19 +136,27 @@ nav .act{background:var(--cream)!important;color:var(--o9)!important;opacity:1}
 .meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--rose));transition:width .5s}
 .note{font-size:.82rem;color:var(--muted);margin:1rem 0 0}
 
-/* timeline */
-.track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:2.5rem 0 1.5rem}
-.track::before,.track i{content:"";position:absolute;left:0;top:1.1rem;height:4px;border-radius:4px}
-.track::before{right:0;background:#d8d0bb}.track i{width:var(--w,0%);background:var(--rose);transition:width .5s}
-.track button{position:relative;background:none;border:0;text-align:center;padding:0 .3rem}
-.track button span{display:block;width:2.4rem;height:2.4rem;border-radius:50%;margin:0 auto .6rem;background:var(--cream);border:3px solid #d8d0bb;display:grid;place-items:center;font-weight:600;transition:.3s}
-.track button.done span{border-color:var(--rose);background:var(--rose);color:#fff}
-.track button[aria-selected=true] span{transform:scale(1.25);border-color:var(--brown);background:var(--brown);color:#fff}
-.track b{font-family:var(--display);font-size:1.3rem;font-weight:600;display:block;line-height:1.1}.track small{color:var(--muted)}
-.tlp{background:var(--paper);border:1px solid #e3dccb;border-radius:16px;padding:2rem;min-height:9rem}
-.tlp h3{color:var(--rose);margin-bottom:.4rem}
-.mes{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;font-weight:600}
-
+/* cronograma */
+.cprog{margin-bottom:1.6rem}.cpt{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-weight:600;color:var(--rose)}.cpt span:last-child{color:var(--muted);font-weight:500}
+.ctw{border:3px solid var(--o9);border-radius:18px;overflow:hidden;background:var(--paper)}
+.ctable{width:100%;border-collapse:collapse;text-align:center}
+.ctable caption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ctable thead th{background:linear-gradient(90deg,var(--o9),var(--o7));color:var(--cream);font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;padding:1rem}
+.ctable thead th+th,.ctable td,.ctable tbody th{border-left:3px solid var(--o9)}
+.ctable thead th:first-child,.ctable tbody th{border-left:0}
+.ctable tbody tr{border-top:3px solid var(--o9);transition:background .3s}
+.ctable tbody th{background:var(--sage);text-align:left;font-weight:600;font-size:1.05rem;padding:1.3rem 1.4rem;width:31%;line-height:1.35}
+.ctable td{padding:1.3rem 1.4rem;font-size:1rem}.ctable td:nth-child(2){width:21%;font-weight:500}
+.cs{display:none;margin:0 0 .5rem;padding:.2rem .8rem;border-radius:999px;font-size:.78rem;font-weight:600;color:#fff;width:max-content}
+.cs.on{display:block}.cs.done{background:#4a8a3c}.cs.now{background:var(--rose)}.cs.next{background:var(--o7)}
+.ctable tr.now{background:#f7ecc8}.ctable tr.now th{background:var(--mustard)}
+.ctable tr.done td{color:var(--muted)}
+.cs.now::before{content:"";display:inline-block;width:.5rem;height:.5rem;border-radius:50%;background:#fff;margin-right:.45rem;animation:tw 1.4s ease-in-out infinite}
+@media(max-width:700px){
+ .ctable thead{display:none}.ctable,.ctable tbody,.ctable tr,.ctable th,.ctable td{display:block;width:auto!important}
+ .ctable td,.ctable tbody th{border-left:0}.ctable tbody th{padding:1rem 1.2rem .8rem}.ctable td{padding:.7rem 1.2rem}
+ .ctable td::before{content:attr(data-l);display:block;font-size:.78rem;font-weight:600;color:var(--rose)}.ctable td:last-child{padding-bottom:1.2rem}
+}
 /* team */
 .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2.5rem;padding:0;list-style:none}
 .team li{background:var(--paper);border:1px solid #e3dccb;border-radius:16px;padding:1.6rem;transition:transform .25s}
@@ -260,7 +268,7 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
  .st{min-height:60vh}
  .stats,.goals{grid-template-columns:1fr 1fr}.tiles{grid-template-columns:1fr}.out{grid-template-columns:1fr}
  .odsc>button{grid-template-columns:4rem 1fr 56px auto;padding:1.2rem}.odsc .n{font-size:3.4rem}.odsc .body p{padding:0 1.2rem 1.4rem}
- .sheet{width:44vw}.track b{font-size:1rem}
+ .sheet{width:44vw}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
@@ -332,7 +340,7 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
     <a class="tile rv" href="#/como"><h3>Cómo funciona</h3><p>Las cuatro etapas, una por una.</p><u></u></a>
     <a class="tile rv" href="#/ods"><h3>ODS</h3><p>Los tres objetivos de la ONU con los que trabajamos.</p><u></u></a>
     <a class="tile rv" href="#/impacto"><h3>Impacto</h3><p>Calcula cuántos árboles y litros de agua se salvan.</p><u></u></a>
-    <a class="tile rv" href="#/cronograma"><h3>Cronograma</h3><p>De un piloto a un proyecto que se replica.</p><u></u></a>
+    <a class="tile rv" href="#/cronograma"><h3>Cronograma</h3><p>Las cinco fases del trabajo, con sus fechas.</p><u></u></a>
     <a class="tile rv" href="#/equipo"><h3>Equipo</h3><p>Las personas detrás de cada hoja.</p><u></u></a>
     <a class="tile rv wide" href="#/huella"><h3>Mi huella de papel</h3><p>Cinco preguntas para ver cuánto papel usas al año y a dónde va.</p><u></u></a>
     <a class="tile rv wide" href="#/participa"><h3>Participa</h3><p>Haz tu compromiso con el papel y prueba tu puntería clasificando residuos.</p><u></u></a>
@@ -427,18 +435,21 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
 
 <!-- CRONOGRAMA -->
 <div class="view" id="v-cronograma">
- <header class="ph"><div class="sheet s1" aria-hidden="true"></div><div class="wrap"><h1>Cronograma</h1><p>Cuatro fases para pasar de un piloto a un proyecto replicable.</p></div></header>
+ <header class="ph"><div class="sheet s1" aria-hidden="true"></div><div class="wrap"><h1>Cronograma de trabajo</h1><p>Cinco fases, del 6 de octubre al 1 de noviembre.</p></div></header>
  <section>
-  <div class="wrap tl">
-   <div class="track" id="track" role="tablist" aria-label="Fases">
-    <i></i>
-    <button role="tab"><span>1</span><b>Piloto</b><small>Meses 1 a 3</small></button>
-    <button role="tab"><span>2</span><b>Expansión local</b><small>Meses 4 a 9</small></button>
-    <button role="tab"><span>3</span><b>Consolidación</b><small>Meses 10 a 18</small></button>
-    <button role="tab"><span>4</span><b>Escalamiento</b><small>Año 2 en adelante</small></button>
-   </div>
-   <div class="tlp" id="tlp" aria-live="polite"></div>
-   <div class="mes"><label for="mes">Mes del proyecto:</label><input id="mes" type="range" min="1" max="24" value="1" style="flex:1;accent-color:var(--rose)"><output id="meso">1</output></div>
+  <div class="wrap">
+   <div class="cprog"><div class="cpt"><span id="cps"></span><span id="cpp"></span></div><div class="meter" style="margin:.5rem 0 0" aria-hidden="true"><i id="cpm"></i></div></div>
+   <div class="ctw"><table class="ctable">
+    <caption>Fases del proyecto con su periodo y objetivo</caption>
+    <thead><tr><th scope="col">Fase</th><th scope="col">Periodo</th><th scope="col">Objetivo</th></tr></thead>
+    <tbody id="cb">
+     <tr data-s="2026-10-06" data-e="2026-10-06"><th scope="row"><span class="cs"></span>Fase 1: idea e inicio del proyecto</th><td data-l="Periodo">6 de octubre</td><td data-l="Objetivo">Se pensará en una idea, a planos muy generales, acerca del proyecto a realizar.</td></tr>
+     <tr data-s="2026-10-09" data-e="2026-10-16"><th scope="row"><span class="cs"></span>Fase 2: recolección de materiales</th><td data-l="Periodo">9 - 16 de octubre</td><td data-l="Objetivo">Se conseguirán los materiales necesarios para la fabricación del papel y se creará nuestro sitio web oficial.</td></tr>
+     <tr data-s="2026-10-16" data-e="2026-10-25"><th scope="row"><span class="cs"></span>Fase 3: realización del papel</th><td data-l="Periodo">16 - 25 de octubre</td><td data-l="Objetivo">Realización de los marcos, molienda del papel y, por fin, realización del papel reciclado.</td></tr>
+     <tr data-s="2026-10-28" data-e="2026-10-29"><th scope="row"><span class="cs"></span>Fase 4: utilización del papel</th><td data-l="Periodo">28 - 29 de octubre</td><td data-l="Objetivo">El papel se le entrega a los miembros del equipo para la realización de papiroflexia y blocs de notas.</td></tr>
+     <tr data-s="2026-10-29" data-e="2026-11-01"><th scope="row"><span class="cs"></span>Fase 5: edición y finalización del proyecto</th><td data-l="Periodo">29 de octubre - 1 de noviembre</td><td data-l="Objetivo">Mostrar a la comunidad nuestro trabajo, tomar evidencias por video y realizar la edición final, con corrección de errores.</td></tr>
+    </tbody>
+   </table></div>
   </div>
  </section>
 </div>
@@ -609,20 +620,22 @@ function calc(kg){kg=Math.max(0,Number(kg)||0);
 r.oninput=function(){n.value=r.value;calc(r.value)};n.oninput=function(){r.value=Math.min(n.value,2000);calc(n.value)};calc(r.value);
 
 /* ---- cronograma ---- */
-var F=[['Fase 1: piloto','Meses 1 a 3','Implementar en un barrio o escuela y validar la logística.'],
-['Fase 2: expansión local','Meses 4 a 9','Ampliar a 3 a 5 zonas y sumar aliados como comercios y oficinas.'],
-['Fase 3: consolidación','Meses 10 a 18','Establecer centros de acopio fijos y formalizar alianzas.'],
-['Fase 4: escalamiento','Año 2 en adelante','Replicar en otras localidades y buscar financiamiento.']];
-var tb=$$('#track button'),mes=$('#mes'),meso=$('#meso'),first=[1,4,10,19];
-function phase(i,fromSlider){
-  tb.forEach(function(b,j){b.setAttribute('aria-selected',j===i);b.classList.toggle('done',j<i)});
-  $('#track').style.setProperty('--w',(i/3*75+12.5)+'%');
-  $('#tlp').innerHTML='<h3>'+F[i][0]+'</h3><p style="color:var(--rose);font-weight:600;margin-bottom:.4rem">'+F[i][1]+'</p><p style="margin:0">'+F[i][2]+'</p>';
-  if(!fromSlider){mes.value=first[i];meso.textContent=first[i]}
-}
-tb.forEach(function(b,i){b.onclick=function(){phase(i)}});
-mes.oninput=function(){var m=+mes.value;meso.textContent=m;phase(m<=3?0:m<=9?1:m<=18?2:3,true)};
-phase(0);
+(function(){
+  var rows=$$('#cb tr'),now=new Date(),M=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  function d(v,end){var p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2],end?23:0,end?59:0,end?59:0)}
+  var st=rows.map(function(r){return d(r.dataset.s)}),en=rows.map(function(r){return d(r.dataset.e,1)});
+  var idx=-1;st.forEach(function(x,i){if(x<=now)idx=i});
+  var curr=idx>=0&&now<=en[idx]?idx:-1,nxt=curr>-1?-1:(idx+1<rows.length?idx+1:-1);
+  rows.forEach(function(r,i){
+    var c=$('.cs',r),k=null,t='';
+    if(i===curr){k='now';t='En curso'}else if(i<=idx&&i!==curr){k='done';t='Listo'}else if(i===nxt){k='next';t='Siguiente'}
+    if(k){c.className='cs on '+k;c.textContent=t;r.classList.add(k==='next'?'nxt':k)}
+  });
+  var tot=en[en.length-1]-st[0],pc=Math.max(0,Math.min(100,(now-st[0])/tot*100));
+  $('#cps').textContent=curr>-1?'Ahora: '+$('th',rows[curr]).textContent.replace(/^.*?(Fase \d+).*$/,'$1')+' de '+rows.length:(now>en[en.length-1]?'Todas las fases terminaron':'Próxima: Fase '+(nxt+1)+' de '+rows.length);
+  $('#cpp').textContent='Hoy: '+now.getDate()+' de '+M[now.getMonth()];
+  setTimeout(function(){$('#cpm').style.width=pc+'%'},200);
+})();
 
 
 /* ---- ilustraciones animadas ---- */
