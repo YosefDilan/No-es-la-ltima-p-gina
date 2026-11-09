@@ -259,6 +259,18 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
 .wi{background:var(--cream);border-radius:14px;padding:1.4rem;margin-top:1.2rem}.wi input{width:100%;accent-color:var(--rose);margin:.8rem 0}.wi p{margin:0;max-width:none}
 .tit{font-family:var(--display);font-size:1.8rem;color:var(--rose);margin:1.6rem 0 .2rem}
 @media(max-width:900px){.hgrid{grid-template-columns:1fr}.hlive{position:static;order:-1}.pile{height:110px}}
+
+.tile.full{grid-column:1/-1;background:var(--o9);border-color:var(--o9)}.tile.full h3{color:var(--mustard)}.tile.full p{color:#d9d2bd}.tile.full:hover{background:#2f3027}
+.vid{position:relative;aspect-ratio:16/9;max-width:960px;margin-inline:auto;border-radius:18px;overflow:hidden;background:#1d1e18;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.vid .vp{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:#1d1e18 center/cover no-repeat;display:grid;place-items:center;cursor:pointer}
+.vid .vp::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.6))}
+.vid .pb{position:relative;width:92px;height:92px;border-radius:50%;background:var(--cream);display:grid;place-items:center;transition:transform .25s,background .25s}
+.vid .pb svg{width:38px;height:38px;margin-left:5px}
+.vid .vp:hover .pb{transform:scale(1.1);background:var(--mustard)}
+.vid .vt{position:absolute;left:1.4rem;bottom:1.1rem;color:#fff;font-family:var(--display);font-size:clamp(1.3rem,3vw,2rem);text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vlinks{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1.6rem}
+@media(max-width:900px){.vid .pb{width:64px;height:64px}.vid .pb svg{width:26px;height:26px}}
 @media(max-width:900px){
  .burger{display:block}
  nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--o9);flex-direction:column;align-items:stretch;padding:.5rem 4%;gap:0}
@@ -282,10 +294,11 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
   <button class="burger" aria-label="Abrir menú" aria-expanded="false">Menú</button>
   <ul id="links">
    <li><a href="#/inicio" data-r="inicio">Inicio</a></li>
-   <li class="dd"><button aria-expanded="false" aria-haspopup="true" data-g="proposito como">Proyecto</button>
+   <li class="dd"><button aria-expanded="false" aria-haspopup="true" data-g="proposito como video">Proyecto</button>
     <div class="menu">
      <a href="#/proposito" data-r="proposito">Propósito<small>Por qué existe y qué buscamos</small></a>
      <a href="#/como" data-r="como">Cómo funciona<small>Las cuatro etapas del papel</small></a>
+     <a href="#/video" data-r="video">Video<small>El proyecto en imágenes</small></a>
     </div></li>
    <li><a href="#/ods" data-r="ods">ODS</a></li>
    <li><a href="#/impacto" data-r="impacto">Impacto</a></li>
@@ -344,6 +357,7 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
     <a class="tile rv" href="#/equipo"><h3>Equipo</h3><p>Las personas detrás de cada hoja.</p><u></u></a>
     <a class="tile rv wide" href="#/huella"><h3>Mi huella de papel</h3><p>Cinco preguntas para ver cuánto papel usas al año y a dónde va.</p><u></u></a>
     <a class="tile rv wide" href="#/participa"><h3>Participa</h3><p>Haz tu compromiso con el papel y prueba tu puntería clasificando residuos.</p><u></u></a>
+    <a class="tile rv full" href="#/video"><h3>Mira el video del proyecto</h3><p>Cómo lo hicimos, de la idea al papel reciclado.</p><u></u></a>
    </div>
   </div>
  </section>
@@ -454,6 +468,20 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
  </section>
 </div>
 
+<!-- VIDEO -->
+<div class="view" id="v-video">
+ <header class="ph"><div class="sheet s2" aria-hidden="true"></div><div class="wrap"><h1>El proyecto en video</h1><p>Mira cómo se hizo «No es la última página».</p></div></header>
+ <section class="dark">
+  <div class="wrap">
+   <div class="vid" id="vid"></div>
+   <div class="vlinks">
+    <a class="btn" href="https://youtu.be/qFw2SFnP6tA" target="_blank" rel="noopener">Ver en YouTube</a>
+    <a class="btn ghost" href="#/cronograma">Ver el cronograma</a>
+   </div>
+  </div>
+ </section>
+</div>
+
 <!-- HUELLA -->
 <div class="view" id="v-huella">
  <header class="ph"><div class="sheet s1" aria-hidden="true"></div><div class="wrap"><h1>Mi huella de papel</h1><p>Responde y mira crecer tu pila de papel mientras contestas.</p></div></header>
@@ -543,7 +571,7 @@ footer p{margin:0 0 .4rem;opacity:.9;max-width:70ch}
 (function(){
 var $=function(s,c){return(c||document).querySelector(s)},$$=function(s,c){return[].slice.call((c||document).querySelectorAll(s))};
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-var T={inicio:'Inicio',proposito:'Propósito',como:'Cómo funciona',ods:'ODS',impacto:'Impacto',cronograma:'Cronograma',huella:'Mi huella',participa:'Participa',equipo:'Equipo'};
+var T={inicio:'Inicio',proposito:'Propósito',como:'Cómo funciona',ods:'ODS',impacto:'Impacto',cronograma:'Cronograma',huella:'Mi huella',video:'Video',participa:'Participa',equipo:'Equipo'};
 var ul=$('#links'),burger=$('.burger'),dd=$('.dd');
 
 /* ---- router por hash ---- */
@@ -553,7 +581,7 @@ function route(){
   $$('[data-r]').forEach(function(a){var on=a.dataset.r===id;a.classList.toggle('act',on);if(a.tagName==='A'){on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')}});
   $('.dd>button').classList.toggle('act',$('.dd>button').dataset.g.split(' ').indexOf(id)>-1);
   document.title=T[id]+' | No es la última página';
-  scrollTo(0,0);closeMenus();watch(id);onScroll();
+  scrollTo(0,0);closeMenus();watch(id);onScroll();if(id!=='video'&&vbox.querySelector('iframe'))vidReset();
 }
 function closeMenus(){ul.classList.remove('open');burger.setAttribute('aria-expanded','false');dd.classList.remove('open');$('.dd>button').setAttribute('aria-expanded','false')}
 burger.onclick=function(){var o=ul.classList.toggle('open');burger.setAttribute('aria-expanded',o)};
@@ -877,6 +905,16 @@ function hresult(){
 function hstart(){ans={};hpath=[0];hcur=0;fact('Contesta para ver crecer tu pila.');hshow()}
 $('#hback').onclick=function(){if(hpath.length>1){hpath.pop();hcur=hpath[hpath.length-1];hshow()}};
 hstart();
+
+/* ---- video ---- */
+var VID='qFw2SFnP6tA',vbox=$('#vid');
+function vidReset(){
+  vbox.innerHTML='<button class="vp" type="button" aria-label="Reproducir el video del proyecto" style="background-image:url(https://i.ytimg.com/vi/'+VID+'/hqdefault.jpg)"><span class="pb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.5v19L21 12z" fill="#3d3e32"/></svg></span><span class="vt">Ver el video</span></button>';
+  $('.vp',vbox).onclick=function(){
+    vbox.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+VID+'?autoplay=1&rel=0" title="Video del proyecto No es la última página" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  };
+}
+vidReset();
 
 if(reduce)$$('.cyc svg').forEach(function(v){v.pauseAnimations&&v.pauseAnimations()});
 route();onScroll();
